@@ -22,7 +22,7 @@ export default function SearchBar() {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
   const filteredCities = citiesMock.filter((city) =>
-    city.toLowerCase().includes(query.toLowerCase()),
+    city.toLowerCase().startsWith(query.toLowerCase()),
   );
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {

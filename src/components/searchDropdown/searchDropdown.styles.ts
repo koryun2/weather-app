@@ -4,7 +4,7 @@ export const SearchDropdownContainer = styled.ul`
   display: flex;
   flex-direction: column;
   padding-left: 0;
-  margin: 0 0 25px 25px;
+  margin: 0 0 20px 20px;
 `;
 
 export const SearchDropdownItem = styled.li`
