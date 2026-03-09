@@ -15,6 +15,12 @@ export const DailyCardContainer = styled.div`
   border-radius: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
   scroll-snap-align: start;
+  cursor: default;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  }
 
   @media (min-width: 768px) {
     width: 124px;

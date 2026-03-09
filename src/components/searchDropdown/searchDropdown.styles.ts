@@ -15,8 +15,13 @@ export const SearchDropdownItem = styled.li`
   border-radius: 5px;
   background-color: #f0f0f0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
+
   &:hover {
     background-color: #e0e0e0;
+  }
+
+  &:active {
+    background-color: #d0d0d0;
   }
 `;

@@ -39,6 +39,16 @@ export const SearchBarInput = styled.input`
   color: #333;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus {
+    box-shadow: 0 2px 12px rgba(0, 165, 241, 0.25);
+  }
 
   @media (min-width: 768px) {
     margin: 1.25rem 0 1.25rem 1.25rem;
@@ -70,6 +80,22 @@ export const SearchBarButton = styled.button`
   background-color: rgb(0, 165, 241);
   border-radius: 10px;
   box-shadow: 0 4px 14px rgba(0, 165, 241, 0.4);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background-color: rgb(0, 145, 215);
+    box-shadow: 0 4px 18px rgba(0, 165, 241, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
 
   @media (min-width: 768px) {
     gap: 8px;
