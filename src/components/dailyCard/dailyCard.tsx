@@ -7,7 +7,7 @@ import {
   TempMax,
   TempMin,
 } from "./dailyCard.styles";
-import { convertTemperature } from "../../utils";
+import { convertTemperature } from "@/utils";
 
 export interface DailyCardProps {
   weekday: string;

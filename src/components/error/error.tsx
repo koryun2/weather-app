@@ -1,4 +1,4 @@
-import { AppContext } from "../../contextProvider.ts";
+import { AppContext } from "@/contextProvider";
 import { ErrorContainer } from "./error.styles.ts";
 import { useContext, useEffect } from "react";
 

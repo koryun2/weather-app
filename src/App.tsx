@@ -1,18 +1,18 @@
 import "./App.css";
-import ForecastCarousel from "./components/forecastCarousel/forecastCarousel";
-import CurrentForecast from "./components/currentForecast/currentForecast";
-import SearchBar from "./components/searchBar/searchBar.tsx";
+import ForecastCarousel from "@components/forecastCarousel/forecastCarousel";
+import CurrentForecast from "@components/currentForecast/currentForecast";
+import SearchBar from "@components/searchBar/searchBar";
 import { useContext, useEffect } from "react";
-import UnitSwitch from "./components/unitSwitch/unitSwitch.tsx";
-import { AppContext } from "./contextProvider.ts";
+import UnitSwitch from "@components/unitSwitch/unitSwitch";
+import { AppContext } from "@/contextProvider";
 import {
   getCityFromPosition,
   getCurrentPosition,
-} from "./services/location.ts";
-import { getWeather } from "./services/weather.ts";
-import Error from "./components/error/error.tsx";
-import Footer from "./components/footer/footer.tsx";
-import Loading from "./components/loading/loading.tsx";
+} from "@services/location";
+import { getWeather } from "@services/weather";
+import Error from "@components/error/error";
+import Footer from "@components/footer/footer";
+import Loading from "@components/loading/loading";
 
 export default function App() {
   const {

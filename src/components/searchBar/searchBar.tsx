@@ -6,8 +6,8 @@ import {
   SearchBarButton,
   SearchBarButtonIcon,
 } from "./searchBar.styles";
-import { AppContext } from "../../contextProvider";
-import { getPositionFromCity } from "../../services/location";
+import { AppContext } from "@/contextProvider";
+import { getPositionFromCity } from "@services/location";
 
 export interface SearchBarProps {
   input: string;

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UnitSwitchContainer, UnitSwitchButton } from "./unitSwitch.styles";
-import { AppContext } from "../../contextProvider.ts";
+import { AppContext } from "@/contextProvider";
 
 export default function UnitSwitch() {
   const { unit, setUnit } = useContext(AppContext);

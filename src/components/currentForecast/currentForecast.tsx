@@ -1,4 +1,4 @@
-import type { ForecastCurrent } from "../../types";
+import type { ForecastCurrent } from "@/types";
 import {
   Fallback,
   CurrentForecastContainer,
@@ -16,7 +16,7 @@ import {
   AdditionalInfoContainer,
   CurrentForecastHeader,
 } from "../currentForecast/currentForecast.styles";
-import { convertTemperature, formatTime, getIconURL } from "../../utils";
+import { convertTemperature, formatTime, getIconURL } from "@/utils";
 
 export interface CurrentForecastProps {
   header_text: string;

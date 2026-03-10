@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ForecastResponse } from "./types";
+import type { ForecastResponse } from "@/types";
 
 export const AppContext = createContext<{
   unit: string;

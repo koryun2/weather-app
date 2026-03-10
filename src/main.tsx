@@ -1,9 +1,9 @@
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
-import { AppContext } from "./contextProvider.ts";
-import type { ForecastResponse } from "./types";
+import App from "@/App";
+import { AppContext } from "@/contextProvider";
+import type { ForecastResponse } from "@/types";
 
 function AppWithUnit() {
   const [unit, setUnit] = useState("°C");
