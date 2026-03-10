@@ -1,4 +1,4 @@
-# Weather UI
+# Weather App
 
 React weather app: search by city or use geolocation, view current conditions and weekly forecast. Built with Vite, TypeScript, and styled-components.
 
