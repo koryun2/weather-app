@@ -11,6 +11,7 @@ import {
 } from "./services/location.ts";
 import { getWeather } from "./services/weather.ts";
 import Error from "./components/error/error.tsx";
+import Footer from "./components/footer/footer.tsx";
 
 export default function App() {
   const {
@@ -72,6 +73,7 @@ export default function App() {
         daily_cards={weather?.daily ?? null}
         header_text={`This Week`}
       />
+      <Footer />
     </>
   );
 }
