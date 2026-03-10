@@ -11,16 +11,11 @@ export const DailyCardContainer = styled.div`
   min-width: 75px;
   height: 130px;
   flex-shrink: 0;
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   scroll-snap-align: start;
   cursor: default;
-  transition: box-shadow 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-  }
 
   @media (min-width: 768px) {
     width: 124px;
@@ -43,7 +38,7 @@ export const Weekday = styled.h3`
   font-weight: 600;
   margin: 0;
   margin-bottom: 4px;
-  color: #333;
+  color: #fff;
 
   @media (min-width: 768px) {
     font-size: 1.1rem;
@@ -69,14 +64,14 @@ export const Icon = styled.img`
   }
 `;
 
-export const TempDay = styled.div`
+export const TempMax = styled.div`
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   font-weight: 400;
-  color: #333;
+  color: #fff;
 
   @media (min-width: 768px) {
     font-size: 1.1rem;
@@ -87,14 +82,14 @@ export const TempDay = styled.div`
   }
 `;
 
-export const TempNight = styled.div`
+export const TempMin = styled.div`
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   font-weight: 400;
-  color: rgb(138, 138, 138);
+  color: rgb(11, 22, 69);
 
   @media (min-width: 768px) {
     font-size: 1.1rem;

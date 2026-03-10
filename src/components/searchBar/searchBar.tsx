@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import SearchDropdown from "../searchDropdown/searchDropdown";
+import { useContext, useRef, useState } from "react";
 import {
   SearchBarContainer,
   InputContainer,
@@ -7,69 +6,61 @@ import {
   SearchBarButton,
   SearchBarButtonIcon,
 } from "./searchBar.styles";
-import { citiesMock } from "../../mocks";
-import { CityContext } from "../../contextProvider";
+import { AppContext } from "../../contextProvider";
+import { getPositionFromCity } from "../../services/location";
 
 export interface SearchBarProps {
   input: string;
 }
 
 export default function SearchBar() {
-  const { setCity } = useContext(CityContext);
+  const { setCity, setPosition, setCountry, setState, setError } =
+    useContext(AppContext);
   const [query, setQuery] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
-  const filteredCities = citiesMock.filter((city) =>
-    city.toLowerCase().startsWith(query.toLowerCase()),
-  );
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
-    setIsOpen(true);
   }
 
-  function handleSelect(city: string) {
-    setQuery(city);
-    setCity(city);
-    setIsOpen(false);
+  function handleSearch(city: string) {
+    if (city === "") return;
+    getPositionFromCity(city)
+      .then((results) => {
+        const first = results[0];
+        if (!first) {
+          setError("City not found.");
+          return;
+        }
+        setCity(first.name);
+        setCountry(first.country);
+        setState(first.state ?? "");
+        setPosition(first.lat, first.lon);
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        inputContainerRef.current &&
-        !inputContainerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <SearchBarContainer>
       <InputContainer ref={inputContainerRef}>
         <SearchBarInput
           value={query}
-          placeholder="Search city..."
+          placeholder="Search city"
           onChange={handleChange}
-          onFocus={() => setIsOpen(true)}
-        />
-        <SearchDropdown
-          cities={filteredCities}
-          isOpen={isOpen}
-          onSelect={handleSelect}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSearch(query);
+            }
+          }}
         />
       </InputContainer>
 
-      <SearchBarButton>
+      <SearchBarButton onClick={() => handleSearch(query)}>
         <SearchBarButtonIcon src="/icons/search.svg" alt="search" />
         Search
       </SearchBarButton>

@@ -5,19 +5,21 @@ export const SearchBarContainer = styled.div`
   align-items: top;
   justify-content: center;
   width: 100%;
-  margin: 10px;
+  margin: 56px 10px 10px 10px;
   max-width: 100%;
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
 
   @media (min-width: 768px) {
     width: 75%;
+    margin: 10px;
     max-width: 560px;
   }
 
   @media (min-width: 1024px) {
     width: 50vw;
+    margin: 10px;
     max-width: none;
   }
 `;
@@ -25,9 +27,10 @@ export const SearchBarContainer = styled.div`
 export const InputContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 `;
 export const SearchBarInput = styled.input`
+  width: 100%;
   font-family: "Poppins", sans-serif;
   margin: 1rem 0 1rem 1rem;
   padding: 10px 20px;
@@ -75,26 +78,18 @@ export const SearchBarButton = styled.button`
   border: none;
   outline: none;
   font-size: 1rem;
-  font-weight: 400;
-  color: white;
-  background-color: rgb(0, 165, 241);
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  background-color: #ec6e4c;
   border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0, 165, 241, 0.4);
   cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
 
   &:hover {
-    background-color: rgb(0, 145, 215);
-    box-shadow: 0 4px 18px rgba(0, 165, 241, 0.5);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  &:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 2px;
+    background-color: rgb(201, 73, 38);
   }
 
   @media (min-width: 768px) {

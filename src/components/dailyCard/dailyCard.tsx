@@ -4,23 +4,24 @@ import {
   TempContainer,
   Weekday,
   Unit,
-  TempDay,
-  TempNight,
+  TempMax,
+  TempMin,
 } from "./dailyCard.styles";
+import { convertTemperature } from "../../utils";
 
 export interface DailyCardProps {
   weekday: string;
   icon: string;
-  temp_day: number;
-  temp_night: number;
+  temp_max: number;
+  temp_min: number;
   unit: string;
 }
 
 export default function DailyCard({
   weekday,
   icon,
-  temp_day,
-  temp_night,
+  temp_max,
+  temp_min,
   unit,
 }: DailyCardProps) {
   return (
@@ -28,14 +29,14 @@ export default function DailyCard({
       <Weekday>{weekday}</Weekday>
       <Icon src={icon} alt={weekday} />
       <TempContainer>
-        <TempDay>
-          {temp_day}
+        <TempMax>
+          {convertTemperature(temp_max, unit).toFixed(1)}
           <Unit>{unit}</Unit>
-        </TempDay>
-        <TempNight>
-          {temp_night}
+        </TempMax>
+        <TempMin>
+          {convertTemperature(temp_min, unit).toFixed(1)}
           <Unit>{unit}</Unit>
-        </TempNight>
+        </TempMin>
       </TempContainer>
     </DailyCardContainer>
   );

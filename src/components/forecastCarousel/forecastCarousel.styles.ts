@@ -5,12 +5,16 @@ export const CarouselContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 100%;
+  @media (min-width: 1024px) {
+    width: 75vw;
+  }
+  @media (min-width: 1420px) {
+    width: 100%;
 `;
 
 export const CarouselHeader = styled.h2`
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: white;
   margin: 1rem 0;
   width: 100%;
@@ -53,7 +57,7 @@ export const CarouselInnerWrapper = styled.div`
     scroll-snap-type: none;
     gap: 0;
   }
-  @media (min-width: 1264px) {
+  @media (min-width: 1420px) {
     justify-content: center;
   }
 `;

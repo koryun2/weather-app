@@ -6,12 +6,14 @@ export const CurrentForecastContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   width: 100%;
-  max-width: 100%;
+  @media (min-width: 768px) {
+    width: 75vw;
+  }
   box-sizing: border-box;
 
   @media (min-width: 768px) {
@@ -23,7 +25,7 @@ export const CurrentForecastContainer = styled.div`
   }
 
   @media (min-width: 1024px) {
-    padding: 50px;
+    padding: 30px;
     width: 75vw;
   }
 `;
@@ -35,11 +37,14 @@ export const InfoContainer = styled.div`
   width: 100%;
   flex-wrap: wrap;
   gap: 0.5rem;
+  color: #fff;
+  flex-direction: column;
 
   @media (min-width: 768px) {
     width: auto;
     flex-wrap: nowrap;
     gap: 0;
+    flex-direction: row;
   }
 `;
 
@@ -48,11 +53,10 @@ export const MainInfoContainer = styled.div`
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  padding-right: 16px;
-
+  padding-right: 0;
+  gap: 10px;
   @media (min-width: 768px) {
     align-items: flex-start;
-    padding-right: 0;
   }
 `;
 
@@ -61,15 +65,16 @@ export const AdditionalInfoContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
-  gap: 2rem;
-  color: rgb(104, 104, 104);
+  padding-top: 40px;
+
+  color: rgb(184, 206, 229);
   width: 100%;
 
   @media (min-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     padding-top: 0;
+
     gap: 8px;
     width: auto;
   }
@@ -91,6 +96,14 @@ export const Local = styled.div`
   @media (min-width: 1024px) {
     font-size: 1.5rem;
   }
+`;
+
+export const Fallback = styled.div`
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;
 
 export const Time = styled.div`
@@ -116,7 +129,7 @@ export const Temp = styled.div`
   display: flex;
   line-height: 1;
   align-items: left;
-  justify-content: left;
+  justify-content: center;
   font-size: 3rem;
   font-weight: 400;
   margin: 0;
@@ -124,6 +137,7 @@ export const Temp = styled.div`
 
   @media (min-width: 768px) {
     font-size: 4rem;
+    justify-content: left;
   }
 
   @media (min-width: 1024px) {
@@ -138,11 +152,17 @@ export const FeelsLike = styled.div`
   font-style: italic;
   line-height: 1.15;
   color: inherit;
+  padding: 0.4rem 0.5rem;
+  height: 100%;
+  border-right: 3px solid rgb(184, 206, 229);
 
   @media (min-width: 768px) {
+    padding: 0.4rem 1rem;
     display: inline-flex;
     gap: 8px;
     font-size: 1.1rem;
+    border-right: none;
+    border-left: 3px solid rgb(184, 206, 229);
   }
 
   @media (min-width: 1024px) {
@@ -157,11 +177,15 @@ export const Humidity = styled.div`
   font-weight: 400;
   font-style: italic;
   color: inherit;
+  padding: 0.4rem 0.5rem;
+  height: 100%;
 
   @media (min-width: 768px) {
+    padding: 0.4rem 1rem;
     display: inline-flex;
     gap: 8px;
     font-size: 1.1rem;
+    border-left: 3px solid rgb(184, 206, 229);
   }
 
   @media (min-width: 1024px) {
@@ -176,10 +200,14 @@ export const WindSpeed = styled.div`
   font-style: italic;
   line-height: 1.15;
   color: inherit;
+  padding: 0.4rem 0.5rem;
+  border-left: 3px solid rgb(184, 206, 229);
+  height: 100%;
 
   @media (min-width: 768px) {
     display: inline-flex;
     gap: 8px;
+    padding: 0.4rem 1rem;
     font-size: 1.1rem;
   }
 
@@ -222,7 +250,7 @@ export const CurrentForecastHeader = styled.h2`
   font-size: 1.5rem;
   padding: 0;
   margin: 1rem 0;
-  font-weight: 600;
+  font-weight: 500;
   color: white;
   text-align: center;
   width: 100%;
