@@ -12,6 +12,7 @@ import {
 import { getWeather } from "./services/weather.ts";
 import Error from "./components/error/error.tsx";
 import Footer from "./components/footer/footer.tsx";
+import Loading from "./components/loading/loading.tsx";
 
 export default function App() {
   const {
@@ -23,37 +24,35 @@ export default function App() {
     state,
     weather,
     error,
+    loading,
     setWeather,
     setCity,
     setPosition,
     setError,
+    setLoading,
   } = useContext(AppContext);
 
   useEffect(() => {
-    getCurrentPosition().then((position) => {
-      setPosition(position.latitude, position.longitude);
-      getCityFromPosition(position.latitude, position.longitude).then(
-        (city) => {
-          setCity(city);
-        },
-      );
-      getWeather(position.latitude, position.longitude).then((weatherItem) => {
-        setWeather(weatherItem);
-      });
-    });
+    getCurrentPosition()
+      .then((position) => {
+        setPosition(position.latitude, position.longitude);
+        getCityFromPosition(position.latitude, position.longitude).then(
+          (cityName) => setCity(cityName),
+        );
+      })
+      .catch((err) => setError(err?.message ?? "Failed to load"));
   }, []);
 
   useEffect(() => {
-    if (city) {
-      getWeather(latitude, longitude)
-        .then((weatherItem) => {
-          setWeather(weatherItem);
-          setError("");
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
-    }
+    if (!city || (latitude === 0 && longitude === 0)) return;
+    setLoading(true);
+    getWeather(latitude, longitude)
+      .then((weatherItem) => {
+        setWeather(weatherItem);
+        setError("");
+      })
+      .catch((err) => setError(err?.message ?? "Failed to load"))
+      .finally(() => setLoading(false));
   }, [city, latitude, longitude]);
 
   return (
@@ -61,18 +60,24 @@ export default function App() {
       <SearchBar />
       <UnitSwitch />
       {error && <Error error={error} />}
-      <CurrentForecast
-        country={country}
-        state={state}
-        weather={weather?.current ?? null}
-        unit={unit}
-        city={city}
-        header_text={`Today's Weather in ${city}`}
-      />
-      <ForecastCarousel
-        daily_cards={weather?.daily ?? null}
-        header_text={`This Week`}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <CurrentForecast
+            country={country}
+            state={state}
+            weather={weather?.current ?? null}
+            unit={unit}
+            city={city}
+            header_text={`Today's Weather in ${city}`}
+          />
+          <ForecastCarousel
+            daily_cards={weather?.daily ?? null}
+            header_text={`This Week`}
+          />
+        </>
+      )}
       <Footer />
     </>
   );

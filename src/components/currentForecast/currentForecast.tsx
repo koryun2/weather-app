@@ -47,7 +47,7 @@ export default function CurrentForecast({
                 <Local>
                   {city}
                   {country ? `, ${country}` : ""}
-                  {state ? `, ${state}` : ""}
+                  {state ? `, ${state} ` : ""}
                   <Time>{formatTime(weather?.time ?? 0)}</Time>
                 </Local>
                 <Temp>

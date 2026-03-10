@@ -55,8 +55,10 @@ export const MainInfoContainer = styled.div`
   justify-content: center;
   padding-right: 0;
   gap: 10px;
+
   @media (min-width: 768px) {
     align-items: flex-start;
+    padding-right: 20px;
   }
 `;
 
@@ -74,7 +76,7 @@ export const AdditionalInfoContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding-top: 0;
-
+    text-align: left;
     gap: 8px;
     width: auto;
   }
@@ -116,12 +118,10 @@ export const Time = styled.div`
 
   @media (min-width: 768px) {
     font-size: 1.25rem;
-    padding-left: 8px;
   }
 
   @media (min-width: 1024px) {
     font-size: 1.4rem;
-    padding-left: 10px;
   }
 `;
 

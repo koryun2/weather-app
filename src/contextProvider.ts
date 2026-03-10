@@ -10,6 +10,8 @@ export const AppContext = createContext<{
   longitude: number;
   weather: ForecastResponse | null;
   error: string | null;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
   setUnit: (unit: string) => void;
   setWeather: (weather: ForecastResponse) => void;
   setPosition: (latitude: number, longitude: number) => void;
@@ -26,6 +28,8 @@ export const AppContext = createContext<{
   latitude: 0,
   longitude: 0,
   weather: null,
+  loading: false,
+  setLoading: () => {},
   setError: () => {},
   setCountry: () => {},
   setState: () => {},

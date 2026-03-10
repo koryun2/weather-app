@@ -14,6 +14,7 @@ function AppWithUnit() {
   const [longitude, setLongitude] = useState(0);
   const [weather, setWeather] = useState<ForecastResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const setPosition = (lat: number, lon: number) => {
     setLatitude(lat);
@@ -31,6 +32,8 @@ function AppWithUnit() {
         longitude,
         weather,
         error,
+        loading,
+        setLoading,
         setCountry,
         setState,
         setUnit,
