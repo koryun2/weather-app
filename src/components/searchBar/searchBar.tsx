@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import {
   SearchBarContainer,
   InputContainer,
@@ -8,6 +8,8 @@ import {
 } from "./searchBar.styles";
 import { AppContext } from "@/contextProvider";
 import { getPositionFromCity } from "@services/location";
+import SearchDropdown from "@components/searchDropdown/searchDropdown";
+import type { GeoPositionResult } from "@/types";
 
 export interface SearchBarProps {
   input: string;
@@ -17,12 +19,57 @@ export default function SearchBar() {
   const { setCity, setPosition, setCountry, setState, setError } =
     useContext(AppContext);
   const [query, setQuery] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<GeoPositionResult[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
 
-  const inputContainerRef = useRef<HTMLDivElement>(null);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!query.trim()) {
+      setSuggestions([]);
+      return;
+    }
+    const timer = setTimeout(() => {
+      getPositionFromCity(query)
+        .then((results) => setSuggestions(results))
+        .catch(() => setSuggestions([]));
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [query]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
+    setIsOpen(true);
   }
+
+  const handleSelect = useCallback(
+    (first: GeoPositionResult) => {
+      setCity(first.name);
+      setCountry(first.country);
+      setState(first.state ?? "");
+      setPosition(first.lat, first.lon);
+      setError("");
+      setSuggestions([]);
+      setQuery(first.name);
+      setIsOpen(false);
+    },
+    [setCity, setCountry, setState, setPosition, setError],
+  );
 
   function handleSearch(city: string) {
     if (city === "") return;
@@ -33,11 +80,7 @@ export default function SearchBar() {
           setError("City not found.");
           return;
         }
-        setCity(first.name);
-        setCountry(first.country);
-        setState(first.state ?? "");
-        setPosition(first.lat, first.lon);
-        setError("");
+        handleSelect(first);
       })
       .catch((error) => {
         setError(error.message);
@@ -46,8 +89,9 @@ export default function SearchBar() {
 
   return (
     <SearchBarContainer>
-      <InputContainer ref={inputContainerRef}>
+      <InputContainer ref={containerRef}>
         <SearchBarInput
+          id="city-search"
           value={query}
           placeholder="Search city"
           onChange={handleChange}
@@ -58,8 +102,10 @@ export default function SearchBar() {
             }
           }}
         />
+        {isOpen && (
+          <SearchDropdown cities={suggestions} onSelect={handleSelect} />
+        )}
       </InputContainer>
-
       <SearchBarButton onClick={() => handleSearch(query)}>
         <SearchBarButtonIcon src="/icons/search.svg" alt="search" />
         Search

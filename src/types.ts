@@ -28,3 +28,16 @@ export interface ForecastResponse {
   forecast_units: ForecastUnits;
   daily: ForecastDaily;
 }
+
+export interface GeoPosition {
+  latitude: number;
+  longitude: number;
+}
+
+export interface GeoPositionResult {
+  lat: number;
+  lon: number;
+  name: string;
+  state?: string;
+  country: string;
+}
