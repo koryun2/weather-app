@@ -10,8 +10,9 @@ function AppWithUnit() {
   const [city, setCity] = useState("Yerevan");
   const [country, setCountry] = useState("AM");
   const [state, setState] = useState("");
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
+  // Yerevan, Armenia – default until we get user's location
+  const [latitude, setLatitude] = useState(40.1872);
+  const [longitude, setLongitude] = useState(44.5152);
   const [weather, setWeather] = useState<ForecastResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);

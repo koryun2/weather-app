@@ -1,14 +1,14 @@
 import { AppContext } from "@/contextProvider";
 import { useContext } from "react";
 import type { ForecastDaily } from "@/types";
-import DailyCard from "@components/dailyCard/dailyCard";
+import DailyCard from "@/components/dailyCard/dailyCard";
 import { getWeekday } from "@/utils";
 import {
   CarouselContainer,
   CarouselHeader,
   CarouselInnerWrapper,
 } from "./forecastCarousel.styles";
-import { getIconURL } from "@/utils";
+import { getIconURL } from "../../utils";
 
 interface ForecastCarouselProps {
   header_text: string;
