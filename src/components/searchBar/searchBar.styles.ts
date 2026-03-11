@@ -7,7 +7,7 @@ export const SearchBarContainer = styled.div`
   width: 100%;
   margin: 56px 10px 10px 10px;
   max-width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(183 239 255 / 30%);
   border-radius: 14px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
 

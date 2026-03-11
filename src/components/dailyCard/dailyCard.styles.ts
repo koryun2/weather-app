@@ -11,7 +11,7 @@ export const DailyCardContainer = styled.div`
   min-width: 75px;
   height: 130px;
   flex-shrink: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(233 227 227 / 30%);
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   scroll-snap-align: start;

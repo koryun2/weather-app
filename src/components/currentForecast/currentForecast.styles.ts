@@ -6,7 +6,7 @@ export const CurrentForecastContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(150 219 244 / 30%);
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1rem;
